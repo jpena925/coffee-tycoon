@@ -7,4 +7,9 @@ class ApplicationController < Sinatra::Base
     customers.to_json
   end
 
+  get "/items" do
+    items = Item.all
+    items.to_json
+  end
+
 end
