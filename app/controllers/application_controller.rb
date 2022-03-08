@@ -12,4 +12,10 @@ class ApplicationController < Sinatra::Base
     items.to_json
   end
 
+  get "/orders/:num/:percent" do
+    Customer.create_orders(params[:num], params[:percent])
+    orders = Order.all
+    orders.to_json
+  end 
+
 end

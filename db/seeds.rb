@@ -24,7 +24,12 @@ Item.create(name: "Iced Chai Latte", drink_type: "Tea", hot: false, buy_price: 3
 
 Store.create(money: 70, popularity: 0.50)
 
-MenuItem.create(item: Item.first, store: Store.first, quantity: 5)
-Order.create(sell_price: 10.00, menu_item: MenuItem.first, customer: Customer.first)
+MenuItem.create(item: Item.first, store: Store.first, quantity: 2)
+MenuItem.create(item: Item.find(3), store: Store.first, quantity: 2)
+MenuItem.create(item: Item.find(4), store: Store.first, quantity: 2)
+MenuItem.create(item: Item.find(2), store: Store.first, quantity: 1)
+MenuItem.create(item: Item.find(9), store: Store.first, quantity: 1)
+MenuItem.create(item: Item.find(7), store: Store.first, quantity: 1)
+Order.create(sell_price: 10.00, menu_item: MenuItem.first, customer: Customer.first, fulfilled: true)
 
 puts "✅ Done seeding!"
