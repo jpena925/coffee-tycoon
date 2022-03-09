@@ -7,9 +7,20 @@ class ApplicationController < Sinatra::Base
     customers.to_json
   end
 
+  get "/stores" do
+    stores = Store.all
+    stores.to_json
+  end
+
   get "/items" do
     items = Item.all
     items.to_json
+  end
+
+  get "/orders" do
+    order = Order.all
+    # order.to_json(include: {menu_item: {include: :item}})
+    order.to_json(include: :customer)
   end
 
   get "/orders/:num/:percent" do
