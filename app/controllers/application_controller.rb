@@ -24,6 +24,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/orders/:num/:percent" do
+    Order.destroy_all
     Customer.create_orders(params[:num], params[:percent])
     orders = Order.all
     orders.to_json(include: {customer: {only: [:name]}, menu_item: {include: {item: {only: [:name]}}}})
@@ -50,6 +51,10 @@ class ApplicationController < Sinatra::Base
 
   delete "/menuitems" do
     MenuItem.destroy_all
+  end
+
+  delete "/orders" do
+    Order.destroy_all
   end
 
 end
