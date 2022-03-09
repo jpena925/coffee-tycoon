@@ -19,8 +19,8 @@ class ApplicationController < Sinatra::Base
 
   get "/orders" do
     order = Order.all
-    # order.to_json(include: {menu_item: {include: :item}})
-    order.to_json(include: :customer)
+    # order.to_json(include: {menu_item: {include: {item: {only: [:name]}}}, customer: {only: [:name]}})
+    order.to_json(include: {customer: {only: [:name]}, menu_item: {include: {item: {only: [:name]}}}})
   end
 
   get "/orders/:num/:percent" do
