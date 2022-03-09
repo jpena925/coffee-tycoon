@@ -29,4 +29,17 @@ class ApplicationController < Sinatra::Base
     orders.to_json
   end 
 
+  get "/menuitems" do
+    items = MenuItem.all
+    items.to_json
+  end
+
+  post "/menuitems" do
+    menuitem = MenuItem.create(
+      item: Item.find_by(name: params[:name]),
+      store_id: 1,
+      quantity: params[:quantity]
+    )
+  end
+
 end
