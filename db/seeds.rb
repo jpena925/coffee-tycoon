@@ -1,7 +1,7 @@
 puts "🌱 Seeding spices..."
 # Seed your database here
 
-30.times do 
+60.times do 
     Customer.create(name: Faker::Name.name, want_hot: rand(0.00..0.99).round(2))
 end
 
@@ -30,6 +30,6 @@ Store.create(money: 70, popularity: 0.50)
 # MenuItem.create(item: Item.find(2), store: Store.first, quantity: 1)
 # MenuItem.create(item: Item.find(9), store: Store.first, quantity: 1)
 # MenuItem.create(item: Item.find(7), store: Store.first, quantity: 1)
-Order.create(sell_price: 10.00, menu_item: MenuItem.first, customer: Customer.first, fulfilled: true)
+# Order.create(sell_price: 10.00, menu_item: MenuItem.first, customer: Customer.first, fulfilled: true)
 
 puts "✅ Done seeding!"

@@ -11,7 +11,7 @@ class Customer < ActiveRecord::Base
     end
 
     def want_cold_percent(percent)
-        (1 - self.want_hot) * 0.30 + (percent * 0.01) * 0.70
+        (1 - self.want_hot) * 0.20 + (percent * 0.01) * 0.80
     end
 
     def decide_hot?(percent)
