@@ -26,12 +26,17 @@ class ApplicationController < Sinatra::Base
   get "/orders/:num/:percent" do
     Customer.create_orders(params[:num], params[:percent])
     orders = Order.all
-    orders.to_json
+    orders.to_json(include: {customer: {only: [:name]}, menu_item: {include: {item: {only: [:name]}}}})
   end 
 
   get "/menuitems" do
     items = MenuItem.all
     items.to_json
+  end
+
+  get "/menuitems/:id" do
+    item = MenuItem.find(params[:id])
+    item.to_json
   end
 
   post "/menuitems" do
@@ -40,6 +45,11 @@ class ApplicationController < Sinatra::Base
       store_id: 1,
       quantity: params[:quantity]
     )
+    menuitem.to_json
+  end
+
+  delete "/menuitems" do
+    MenuItem.destroy_all
   end
 
 end
