@@ -1,7 +1,7 @@
 puts "🌱 Seeding spices..."
 # Seed your database here
 
-60.times do 
+100.times do 
     Customer.create(name: Faker::Name.name, want_hot: rand(0.00..0.99).round(2))
 end
 
