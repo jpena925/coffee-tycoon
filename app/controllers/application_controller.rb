@@ -34,7 +34,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/orders/:num/:percent" do
-    # Order.destroy_all
+    Order.destroy_all
     Customer.create_orders(params[:num], params[:percent])
     orders = Order.all
     orders.to_json(include: {customer: {only: [:name]}, menu_item: {include: {item: {only: [:name]}}}})
@@ -51,13 +51,21 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/menuitems" do
-    # MenuItem.destroy_all
-    menuitem = MenuItem.create(
-      item: Item.find_by(name: params[:name]),
-      store_id: 1,
-      quantity: params[:quantity]
-    )
-    menuitem.to_json
+    MenuItem.destroy_all
+    
+    menu_items = params[:menu].filter do |key, value|
+      value[:quantity] > 0
+    end
+
+    full_menu = menu_items.map do |key, value|
+      menuitem = MenuItem.create(
+        item: Item.find_by(name: key),
+        store_id: 1,
+        quantity: value[:quantity]
+      )
+    end
+
+    full_menu.to_json
   end
 
   delete "/menuitems" do
