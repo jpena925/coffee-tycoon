@@ -12,6 +12,19 @@ class ApplicationController < Sinatra::Base
     stores.to_json
   end
 
+  get "/stores/:id" do
+    store = Store.find(params[:id])
+    store.to_json
+  end
+
+  patch "/stores/:id" do
+    store = Store.find(params[:id])
+    store.update(
+      money: params[:money]
+    )
+    store.to_json
+  end
+
   get "/items" do
     items = Item.all
     items.to_json
@@ -52,7 +65,7 @@ class ApplicationController < Sinatra::Base
 
   post "/menuitems" do
     MenuItem.destroy_all
-    
+
     menu_items = params[:menu].filter do |key, value|
       value[:quantity] > 0
     end
