@@ -76,4 +76,14 @@ class ApplicationController < Sinatra::Base
     stores.to_json
   end
 
+  get "/orders/fulfilled" do
+    orders = Order.fulfilled
+    orders.to_json
+  end
+
+  get "/orders/not_fulfilled" do
+    orders = Order.not_fulfilled
+    orders.to_json
+  end
+
 end
