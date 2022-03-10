@@ -50,7 +50,7 @@ class ApplicationController < Sinatra::Base
     Order.destroy_all
     Customer.create_orders(params[:num], params[:percent])
     orders = Order.all
-    orders.to_json(include: {customer: {only: [:name]}, menu_item: {include: {item: {only: [:name]}}}})
+    orders.to_json(include: {customer: {only: [:name, :happy_saying]}, menu_item: {include: {item: {only: [:name]}}}})
   end 
 
   get "/menuitems" do

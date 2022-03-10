@@ -21,7 +21,7 @@ class Customer < ActiveRecord::Base
 
     def self.create_orders(num, percent)
         num.to_i.times do |i|
-            customer = Customer.find(i + 1)
+            customer = Customer.all.sample
             hot_or_cold = customer.decide_hot?(percent.to_i)
             drink_choices = hot_or_cold ? MenuItem.available_hot : MenuItem.available_cold
             if drink_choices.empty?
