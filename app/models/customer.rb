@@ -11,7 +11,7 @@ class Customer < ActiveRecord::Base
     end
 
     def want_cold_percent(percent)
-        (1 - self.want_hot) * 0.20 + (percent * 0.01) * 0.80
+        (1 - self.want_hot) * 0.20 + (percent * 0.01) * 0.8qy0
     end
 
     def decide_hot?(percent)
@@ -22,8 +22,13 @@ class Customer < ActiveRecord::Base
     def self.create_orders(num, percent)
         num.to_i.times do |i|
             customer = Customer.find(i + 1)
-            drink_choices = customer.decide_hot?(percent.to_i) ? MenuItem.available_hot : MenuItem.available_cold
-            chosen_drink = drink_choices.sample
+            hot_or_cold = customer.decide_hot?(percent.to_i)
+            drink_choices = hot_or_cold ? MenuItem.available_hot : MenuItem.available_cold
+            if drink_choices.empty?
+                chosen_drink = hot_or_cold ? MenuItem.hot_drinks.sample : MenuItem.cold_drinks.sample
+            else
+                chosen_drink = drink_choices.sample
+            end
             if chosen_drink.quantity > 0 
                 Order.create(
                     sell_price: chosen_drink.sell_price, 
