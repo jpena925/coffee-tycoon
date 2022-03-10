@@ -64,9 +64,9 @@ class ApplicationController < Sinatra::Base
     MenuItem.destroy_all
   end
 
-  # delete "/orders" do
-  #   Order.destroy_all
-  # end
+  delete "/orders" do
+    Order.destroy_all
+  end
 
   patch "/stores" do
     stores = Store.all

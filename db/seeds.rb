@@ -22,7 +22,7 @@ Item.create(name: "Iced Hibiscus", drink_type: "Tea", hot: false, buy_price: 2.2
 Item.create(name: "Iced Chai Latte", drink_type: "Tea", hot: false, buy_price: 3.00)
 
 
-Store.create(money: 70, popularity: 0.50)
+Store.create(money: 40, popularity: 0.50)
 
 # MenuItem.create(item: Item.first, store: Store.first, quantity: 2)
 # MenuItem.create(item: Item.find(3), store: Store.first, quantity: 2)
