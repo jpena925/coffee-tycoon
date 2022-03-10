@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2022_03_07_221959) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.float "want_hot"
+    t.string "happy_saying"
   end
 
   create_table "items", force: :cascade do |t|
