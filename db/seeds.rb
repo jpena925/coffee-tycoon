@@ -1,8 +1,38 @@
 puts "🌱 Seeding spices..."
 # Seed your database here
 
+
+fakeSayings = []
+
+20.times do 
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "OMG, this place is totally #{hipster_string}!"
+end
+
+20.times do
+    hipster_string = Faker::Hipster.sentence(word_count: 3, random_words_to_add: 0)
+    fakeSayings << "Dude, once that drink hit my lips, I was like, #{hipster_string.slice(0...-1)}!!!"
+end
+
+20.times do
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "This is place is the new #{hipster_string}."
+end
+
+20.times do
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "#{hipster_string}!"
+end
+
+20.times do
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "This place is hella #{hipster_string}!"
+end
+
 100.times do 
-    Customer.create(name: Faker::Name.name, want_hot: rand(0.00..0.99).round(2))
+    fakeSaying = fakeSayings.sample
+    Customer.create(name: Faker::Name.name, want_hot: rand(0.00..0.99).round(2), happy_saying: fakeSaying)
+    fakeSayings.delete(fakeSaying)
 end
 
 
