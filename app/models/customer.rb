@@ -25,11 +25,20 @@ class Customer < ActiveRecord::Base
             hot_or_cold = customer.decide_hot?(percent.to_i)
             drink_choices = hot_or_cold ? MenuItem.available_hot : MenuItem.available_cold
             if drink_choices.empty?
-                chosen_drink = hot_or_cold ? MenuItem.hot_drinks.sample : MenuItem.cold_drinks.sample
+                hot_drink = MenuItem.hot_drinks.sample || nil 
+                cold_drink = MenuItem.cold_drinks.sample || nil
+                chosen_drink = hot_or_cold ? hot_drink : cold_drink
             else
                 chosen_drink = drink_choices.sample
             end
-            if chosen_drink.quantity > 0 
+            if chosen_drink == nil 
+                Order.create(
+                    sell_price: nil, 
+                    menu_item: nil, 
+                    customer: customer, 
+                    fulfilled: false
+                )
+            elsif chosen_drink.quantity > 0 
                 Order.create(
                     sell_price: chosen_drink.sell_price, 
                     menu_item: chosen_drink, 
