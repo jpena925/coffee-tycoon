@@ -10,23 +10,23 @@ fakeSayings = []
 end
 
 25.times do
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "Dude, once that drink hit my lips, I was like, #{hipster_string}!!!👌"
+end
+
+25.times do
+    hipster_string = Faker::Hipster.word
+    fakeSayings << "I speak for the whole hipster community when I say, #{hipster_string}.😍"
+end
+
+25.times do
     hipster_string = Faker::Hipster.sentence(word_count: 3, random_words_to_add: 0)
-    fakeSayings << "Dude, once that drink hit my lips, I was like, #{hipster_string.slice(0...-1)}!!!👌"
+    fakeSayings << "#{hipster_string.slice(0...-1).capitalize}!🤠"
 end
 
 25.times do
     hipster_string = Faker::Hipster.word
-    fakeSayings << "This place is the new #{hipster_string}.😍"
-end
-
-25.times do
-    hipster_string = Faker::Hipster.word
-    fakeSayings << "#{hipster_string}!🤠"
-end
-
-25.times do
-    hipster_string = Faker::Hipster.word
-    fakeSayings << "This place is hella #{hipster_string}!🥸"
+    fakeSayings << "This place is hella #{hipster_string}!☕"
 end
 
 100.times do 

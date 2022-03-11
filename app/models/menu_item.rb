@@ -21,7 +21,7 @@ class MenuItem < ActiveRecord::Base
     end
     
     def sell_price
-        Item.find(self.item_id).buy_price * 2
+        Item.find(self.item_id).buy_price * 1.5
     end
 
     def item_bought
